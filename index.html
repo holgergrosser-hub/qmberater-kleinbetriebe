@@ -160,8 +160,8 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
       --navy:#1a3575;--navy-l:#2d4eaa;--nbg:rgba(26,53,117,.06);
-      --orange:#d95f0b;--white:#fff;--off:#f8f9fb;
-      --text:#111827;--muted:#6b7280;--light:#9ca3af;--border:#e5e7eb;
+      --orange:#ba5009;--white:#fff;--off:#f8f9fb;
+      --text:#111827;--muted:#6b7280;--light:#6b7280;--border:#e5e7eb;
       --green:#15803d;
       --sans:"Syne",sans-serif;--serif:"DM Serif Display",serif;--mono:"IBM Plex Mono",monospace
     }
@@ -176,7 +176,7 @@
     /* BUTTONS */
     .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:700;font-size:.92rem;padding:13px 24px;border-radius:6px;text-decoration:none;transition:all .15s;border:none;cursor:pointer;white-space:nowrap}
     .btn-orange{background:var(--orange);color:var(--white)}
-    .btn-orange:hover{background:#ba5009;transform:translateY(-1px)}
+    .btn-orange:hover{background:#9c4208;transform:translateY(-1px)}
     .btn-navy{background:var(--navy);color:var(--white)}
     .btn-navy:hover{background:var(--navy-l)}
     .btn-ghost{background:var(--white);color:var(--text);border:1px solid var(--border);font-weight:600}
@@ -189,8 +189,8 @@
     .nav-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
     .nav-brand{font-weight:800;font-size:.95rem;color:var(--navy);text-decoration:none}
     .nav-r{display:flex;gap:4px;align-items:center;list-style:none}
-    .nav-r a{color:var(--muted);font-size:.8rem;text-decoration:none;padding:6px 12px;border-radius:4px;transition:color .15s}
-    .nav-r a:hover{color:var(--text)}
+    .nav-r a:not(.btn){color:var(--muted);font-size:.8rem;text-decoration:none;padding:6px 12px;border-radius:4px;transition:color .15s}
+    .nav-r a:not(.btn):hover{color:var(--text)}
     .nav-r .btn{padding:8px 18px;font-size:.82rem}
 
     /* HERO */
@@ -271,7 +271,7 @@
     .schritte{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:13px}
     .schritt{padding:24px 20px;border-right:1px solid var(--border)}
     .schritt:last-child{border-right:none}
-    .s-nr{font-family:var(--mono);font-size:1.7rem;color:var(--border);line-height:1;margin-bottom:13px}
+    .s-nr{font-family:var(--mono);font-size:1.7rem;color:var(--muted);line-height:1;margin-bottom:13px}
     .s-titel{font-weight:700;font-size:.9rem;color:var(--text);margin-bottom:7px}
     .s-text{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:11px}
     .s-tag{display:inline-block;background:var(--off);border:1px solid var(--border);font-family:var(--mono);font-size:.62rem;color:var(--muted);padding:3px 9px;border-radius:3px}
@@ -328,17 +328,18 @@
 
     /* KONTAKT */
     .kontakt{background:var(--navy);padding:60px 24px;text-align:center}
+    .kontakt .eyebrow{color:rgba(255,255,255,.8)}
     .kontakt h2{color:var(--white);margin-bottom:10px}
     .kontakt .lead{color:rgba(255,255,255,.55);margin:0 auto 30px}
     .kontakt-wege{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
     .kw{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:15px 21px;text-align:left;min-width:185px}
-    .kw-lbl{font-family:var(--mono);font-size:.61rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.33);margin-bottom:4px}
+    .kw-lbl{font-family:var(--mono);font-size:.61rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.8);margin-bottom:4px}
     .kw-val{font-size:.91rem;font-weight:700;color:var(--white);text-decoration:none;display:block}
     .kw-val:hover{text-decoration:underline}
-    .kw-sub{font-size:.72rem;color:rgba(255,255,255,.33);margin-top:3px}
+    .kw-sub{font-size:.72rem;color:rgba(255,255,255,.75);margin-top:3px}
     .trust-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-    .trust-item{display:flex;align-items:center;gap:5px;font-size:.75rem;color:rgba(255,255,255,.33)}
-    .trust-item::before{content:"\2713";color:rgba(255,255,255,.25)}
+    .trust-item{display:flex;align-items:center;gap:5px;font-size:.75rem;color:rgba(255,255,255,.75)}
+    .trust-item::before{content:"\2713";color:rgba(255,255,255,.6)}
 
     /* FOOTER */
     footer{background:var(--off);border-top:1px solid var(--border);padding:22px 24px 16px}
@@ -505,6 +506,8 @@
     </ul>
   </div>
 </nav>
+
+<main>
 
 <header class="hero">
   <div class="hero-inner">
@@ -800,7 +803,7 @@
 
 <section class="kontakt" id="kontakt">
   <div class="container">
-    <span class="eyebrow" style="color:rgba(255,255,255,.33)">Nächster Schritt</span>
+    <span class="eyebrow">Nächster Schritt</span>
     <h2>Jetzt klären, welcher Weg für Sie passt</h2>
     <p class="lead">Kostenlos und ohne Verpflichtung. Wir schauen uns Ihren Fall an &mdash; und sagen Ihnen ehrlich, was Sie brauchen.</p>
     <div class="kontakt-wege">
@@ -839,6 +842,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="footer-inner">
