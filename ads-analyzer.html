@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Ads Konkurrenz-Analyse | QMBerater.info</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#1a3575" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#1a3575;--navy-l:#2d4eaa;--nbg:rgba(26,53,117,.06);
+      --orange:#ba5009;--white:#fff;--off:#f8f9fb;
+      --text:#111827;--muted:#6b7280;--border:#e5e7eb;
+      --green:#15803d;
+      --sans:"Syne",sans-serif;--serif:"DM Serif Display",serif;--mono:"IBM Plex Mono",monospace
+    }
+    body{font-family:var(--sans);background:var(--white);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
+    .container{max-width:1060px;margin:0 auto;padding:0 24px}
+    nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100}
+    .nav-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+    .nav-brand{font-weight:800;font-size:.95rem;color:var(--navy);text-decoration:none}
+    .nav-r{display:flex;gap:10px;align-items:center;list-style:none}
+    .text-link{color:var(--navy);font-size:.85rem;font-weight:600;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+    .text-link:hover{border-color:var(--navy)}
+
+    .hero{background:var(--off);border-bottom:1px solid var(--border);padding:36px 24px 28px}
+    .hero h1{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);color:var(--text);line-height:1.15;margin-bottom:8px;font-style:italic}
+    .hero p{color:var(--muted);max-width:760px}
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width: 900px){.grid{grid-template-columns:1fr}}
+
+    .card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px}
+    .card h2{font-size:1rem;margin-bottom:10px}
+    .hint{font-size:.85rem;color:var(--muted);line-height:1.6}
+    label{display:block;font-size:.85rem;font-weight:700;color:var(--text);margin:12px 0 6px}
+    input[type="text"], textarea{
+      width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;
+      font-family:var(--sans);font-size:.92rem;outline:none;background:var(--white)
+    }
+    textarea{min-height:210px;resize:vertical;font-family:var(--mono);font-size:.82rem;line-height:1.55}
+    input[type="file"]{width:100%}
+
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:700;font-size:.92rem;padding:12px 18px;border-radius:6px;text-decoration:none;transition:all .15s;border:none;cursor:pointer;white-space:nowrap}
+    .btn-orange{background:var(--orange);color:var(--white)}
+    .btn-orange:hover{background:#9c4208;transform:translateY(-1px)}
+    .btn-ghost{background:var(--white);color:var(--text);border:1px solid var(--border);font-weight:600}
+    .btn-ghost:hover{border-color:var(--navy);background:var(--nbg)}
+
+    .pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;color:var(--navy);background:var(--nbg);border:1px solid rgba(26,53,117,.15);padding:5px 10px;border-radius:100px}
+
+    .err{margin-top:10px;color:var(--orange);font-size:.88rem}
+    .ok{margin-top:10px;color:var(--green);font-size:.88rem}
+
+    table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+    th,td{border-bottom:1px solid var(--border);padding:10px 10px;text-align:left;font-size:.88rem;vertical-align:top}
+    th{background:var(--off);font-weight:800}
+    code{font-family:var(--mono);font-size:.85em}
+    .muted{color:var(--muted)}
+    .small{font-size:.85rem}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-brand" href="/">QMBerater.info</a>
+      <ul class="nav-r">
+        <li><a class="text-link" href="/">Zur Landingpage</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="row" style="justify-content:space-between;align-items:flex-start">
+        <div>
+          <div class="pill">Tool • Konkurrenz-Analyse</div>
+          <h1>Google Ads der Konkurrenz auswerten</h1>
+          <p>CSV hochladen oder Text reinkopieren → sofort Themen/CTAs pro Domain + Chancen/Risiken als Markdown/JSON.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding:22px 24px 64px">
+    <div class="grid">
+      <section class="card">
+        <h2>1) Daten rein</h2>
+        <p class="hint">Einfachster Weg: aus Excel/Sheets kopieren und hier einfügen. Spalten: <code>domain</code>, <code>headline</code>, <code>description</code> (optional <code>landing_url</code>). Trennzeichen: Komma, Semikolon oder Tab. Ohne Header geht auch (dann muss die Reihenfolge genau so sein).</p>
+
+        <label for="ownDomain">Eigene Domain (optional)</label>
+        <input id="ownDomain" type="text" placeholder="9001-zertifikat.qmberater.info" />
+
+        <label for="file">CSV-Datei (optional)</label>
+        <input id="file" type="file" accept=".csv,text/csv" />
+
+        <label for="csvText">Oder hier reinkopieren</label>
+        <textarea id="csvText" spellcheck="false" placeholder="domain,headline,description,landing_url\nexample.com,ISO 9001 schnell erhalten,Online Zertifizierung inkl. Audit,https://example.com/iso9001"></textarea>
+
+        <div class="row" style="margin-top:12px">
+          <button id="analyzeBtn" class="btn btn-orange" type="button">Analysieren</button>
+          <button id="pasteExampleBtn" class="btn btn-ghost" type="button">Beispiel einfügen</button>
+          <span id="status" class="small muted"></span>
+        </div>
+
+        <div id="error" class="err" style="display:none"></div>
+        <div id="success" class="ok" style="display:none"></div>
+      </section>
+
+      <section class="card">
+        <h2>2) Ergebnis</h2>
+        <p class="hint">Nach “Analysieren” erscheinen hier eine Domain-Übersicht + Download-Buttons.</p>
+
+        <div class="row" style="margin:12px 0">
+          <button id="downloadMd" class="btn btn-ghost" type="button" disabled>Report als Markdown</button>
+          <button id="downloadJson" class="btn btn-ghost" type="button" disabled>Report als JSON</button>
+        </div>
+
+        <div id="summary"></div>
+        <div id="details" style="margin-top:14px"></div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module">
+    const STOPWORDS_DE = new Set([
+      "aber","als","am","an","auch","auf","aus","bei","bin","bis","bist","da","dadurch","daher","darum",
+      "das","dass","dein","deine","dem","den","der","des","dessen","deshalb","die","dies","dieser","dieses",
+      "doch","dort","du","durch","ein","eine","einem","einen","einer","eines","er","es","euer","eure",
+      "für","gegen","gewesen","hab","habe","haben","hat","hatte","hatten","hier","hin","hinter","ich","ihr","ihre",
+      "im","in","ist","ja","jede","jedem","jeden","jeder","jedes","jetzt","kann","kannst","können","könnt",
+      "machen","mehr","mein","meine","mit","muss","musst","müssen","müsst","nach","nicht","noch","nur","ob",
+      "oder","ohne","sehr","sein","seine","sich","sie","sind","so","soll","sollen","sollst","sollt","sonst",
+      "sowie","über","um","und","uns","unser","unsere","unter","vom","von","vor","wann","war","waren","was",
+      "weil","weiter","welche","welcher","welches","wenn","wer","wie","wieder","wir","wird","wirst","wo",
+      "wollen","wollt","zu","zum","zur","zwischen",
+    ]);
+
+    const CTA_PATTERNS = [
+      ["angebot", /\bangebot\b/i],
+      ["kostenlos", /\bkostenlos\b/i],
+      ["beratung", /\bberatung\b|\bberater\b/i],
+      ["termin", /\btermin\b|\bkalender\b|\bcall\b|\bgespr[aä]ch\b/i],
+      ["kontakt", /\bkontakt\b|\bmail\b|\be-?mail\b|\banrufen\b|\btelefon\b/i],
+      ["preis", /\bpreis\b|\beur\b|€|\bfestpreis\b|\bab\s*\d/i],
+      ["schnell", /\bschnell\b|\bsofort\b|\bin\s*\d+\s*(tage|wochen)\b/i],
+      ["audit", /\baudit\b|\bauditor\b/i],
+    ];
+
+    const THEMES = [
+      ["iso-9001", /\biso\s*9001\b|\b9001\b/i],
+      ["iso-14001", /\biso\s*14001\b|\b14001\b/i],
+      ["iso-27001", /\biso\s*27001\b|\b27001\b/i],
+      ["tisax", /\btisax\b/i],
+      ["iatf-16949", /\biatf\s*16949\b|\b16949\b/i],
+      ["dakkS", /\bdakks\b|\bakkreditier/i],
+      ["online", /\bonline\b|\bdigital\b|\bremote\b/i],
+      ["fixpreis", /\bfixpreis\b|\bfestpreis\b/i],
+      ["kleinbetrieb", /\bkleinbetrieb\b|\bkleine\s+(betriebe|unternehmen)\b|\bkm[uü]\b/i],
+      ["foerderung", /\bbafa\b|\bf[oö]rder/i],
+    ];
+
+    const BRAND_TERMS = ["tüv","tuv","tuev","dekra","tüv süd","tuv sud","tüvsüd","tuvsud","din","dqs"];
+
+    const TOKEN_RE = /[a-zA-ZäöüÄÖÜß0-9]+(?:-[a-zA-ZäöüÄÖÜß0-9]+)*/g;
+
+    const els = {
+      ownDomain: document.getElementById('ownDomain'),
+      file: document.getElementById('file'),
+      csvText: document.getElementById('csvText'),
+      analyzeBtn: document.getElementById('analyzeBtn'),
+      pasteExampleBtn: document.getElementById('pasteExampleBtn'),
+      error: document.getElementById('error'),
+      success: document.getElementById('success'),
+      status: document.getElementById('status'),
+      summary: document.getElementById('summary'),
+      details: document.getElementById('details'),
+      downloadMd: document.getElementById('downloadMd'),
+      downloadJson: document.getElementById('downloadJson'),
+    };
+
+    function setError(msg) {
+      els.error.style.display = msg ? 'block' : 'none';
+      els.error.textContent = msg || '';
+      els.success.style.display = 'none';
+      els.success.textContent = '';
+    }
+
+    function setSuccess(msg) {
+      els.success.style.display = msg ? 'block' : 'none';
+      els.success.textContent = msg || '';
+      els.error.style.display = 'none';
+      els.error.textContent = '';
+    }
+
+    function normDomain(value) {
+      let v = (value || '').trim().toLowerCase();
+      v = v.replace('https://', '').replace('http://', '');
+      v = v.split('/')[0];
+      return v;
+    }
+
+    function tokenize(text) {
+      const tokens = (text || '').match(TOKEN_RE) || [];
+      return tokens
+        .map(t => t.toLowerCase())
+        .filter(t => t.length >= 2 && !STOPWORDS_DE.has(t));
+    }
+
+    function ngrams(tokens, n) {
+      if (n <= 1) return tokens;
+      const out = [];
+      for (let i = 0; i <= tokens.length - n; i++) {
+        out.push(tokens.slice(i, i + n).join(' '));
+      }
+      return out;
+    }
+
+    function detectPatterns(text, patterns) {
+      const hits = [];
+      for (const [name, rx] of patterns) {
+        if (rx.test(text || '')) hits.push(name);
+      }
+      return hits;
+    }
+
+    function mentionsBrand(text) {
+      const t = (text || '').toLowerCase();
+      return BRAND_TERMS.some(bt => t.includes(bt));
+    }
+
+    // Small CSV parser (supports quotes). Also works for tab/semicolon if detected.
+    function detectDelimiter(headerLine) {
+      const candidates = [',',';','\t'];
+      let best = ',';
+      let bestCount = -1;
+      for (const d of candidates) {
+        const count = headerLine.split(d).length;
+        if (count > bestCount) { bestCount = count; best = d; }
+      }
+      return best;
+    }
+
+    function parseDelimited(text) {
+      const raw = (text || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+      if (!raw) return { headers: [], rows: [] };
+
+      const lines = raw.split('\n').filter(l => l.trim().length > 0);
+      if (lines.length === 0) return { headers: [], rows: [] };
+
+      const delim = detectDelimiter(lines[0]);
+      const headers = parseLine(lines[0], delim).map(h => h.trim());
+      const rows = [];
+      for (let i = 1; i < lines.length; i++) {
+        const fields = parseLine(lines[i], delim);
+        const obj = {};
+        for (let c = 0; c < headers.length; c++) obj[headers[c]] = fields[c] ?? '';
+        rows.push(obj);
+      }
+      return { headers, rows };
+    }
+
+    function parseLine(line, delim) {
+      const out = [];
+      let cur = '';
+      let inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+          if (inQuotes && line[i + 1] === '"') { cur += '"'; i++; }
+          else { inQuotes = !inQuotes; }
+          continue;
+        }
+        if (!inQuotes && ch === delim) {
+          out.push(cur);
+          cur = '';
+          continue;
+        }
+        cur += ch;
+      }
+      out.push(cur);
+      return out;
+    }
+
+    function guessColumns(headers) {
+      const norm = new Map(headers.map(h => [h, (h || '').trim().toLowerCase().replace(/[^a-z0-9]+/g,'_')]));
+
+      function pick(...candidates) {
+        for (const [orig, n] of norm.entries()) {
+          if (candidates.includes(n)) return orig;
+        }
+        return null;
+      }
+
+      const mapping = {
+        domain: pick('domain','advertiser_domain','host','seite','website'),
+        headline: pick('headline','title','anzeigentitel','titel'),
+        description: pick('description','text','anzeige','body','beschreibung'),
+        landing_url: pick('landing_url','landing','final_url','ziel','ziel_url','url'),
+      };
+
+      const missing = ['domain','headline','description'].filter(k => !mapping[k]);
+      if (missing.length) {
+        throw new Error(`CSV braucht Spalten: domain, headline, description. Gefunden: ${headers.join(', ')}`);
+      }
+      return mapping;
+    }
+
+    function analyzeRows(adRows, ownDomain) {
+      const byDomain = new Map();
+      for (const ad of adRows) {
+        if (!byDomain.has(ad.domain)) byDomain.set(ad.domain, []);
+        byDomain.get(ad.domain).push(ad);
+      }
+
+      const corpusUnigrams = new Map();
+      function count(map, key, inc=1) { map.set(key, (map.get(key) || 0) + inc); }
+
+      for (const ad of adRows) {
+        for (const t of tokenize(ad.text)) count(corpusUnigrams, t);
+      }
+
+      const themeMatrix = new Map(); // theme -> Set(domains)
+      const ctaMatrix = new Map();
+
+      const byDomainSummary = {};
+      for (const [domain, rows] of [...byDomain.entries()].sort((a,b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))) {
+        const uni = new Map();
+        const bi = new Map();
+        const tri = new Map();
+        const ctaHits = new Map();
+        const themeHits = new Map();
+        let brandFlag = false;
+
+        for (const r of rows) {
+          const toks = tokenize(r.text);
+          for (const t of toks) count(uni, t);
+          for (const g of ngrams(toks, 2)) count(bi, g);
+          for (const g of ngrams(toks, 3)) count(tri, g);
+
+          for (const c of detectPatterns(r.text, CTA_PATTERNS)) {
+            count(ctaHits, c);
+            if (!ctaMatrix.has(c)) ctaMatrix.set(c, new Set());
+            ctaMatrix.get(c).add(domain);
+          }
+          for (const th of detectPatterns(r.text, THEMES)) {
+            count(themeHits, th);
+            if (!themeMatrix.has(th)) themeMatrix.set(th, new Set());
+            themeMatrix.get(th).add(domain);
+          }
+          brandFlag = brandFlag || mentionsBrand(r.text);
+        }
+
+        byDomainSummary[domain] = {
+          ads: rows.length,
+          top_unigrams: topN(uni, 15),
+          top_bigrams: topN(bi, 12),
+          top_trigrams: topN(tri, 10),
+          cta: mapToSortedObject(ctaHits),
+          themes: mapToSortedObject(themeHits),
+          mentions_brand_term: brandFlag,
+        };
+      }
+
+      const domains = Object.keys(byDomainSummary);
+      const themeCoverage = [...themeMatrix.entries()].map(([th, ds]) => ({ theme: th, domains: [...ds].sort(), coverage: domains.length ? (ds.size / domains.length) : 0 }));
+      themeCoverage.sort((a,b) => b.coverage - a.coverage || a.theme.localeCompare(b.theme));
+
+      const crowded = themeCoverage.filter(t => t.coverage >= 0.5).slice(0, 8);
+      const rare = themeCoverage.filter(t => t.coverage > 0 && t.coverage <= 0.25).sort((a,b) => a.coverage - b.coverage || a.theme.localeCompare(b.theme)).slice(0, 8);
+
+      const brandDomains = domains.filter(d => byDomainSummary[d].mentions_brand_term);
+
+      const report = {
+        meta: {
+          generated_at: new Date().toISOString().slice(0,19),
+          rows: adRows.length,
+          domains: domains.length,
+          own_domain: ownDomain ? normDomain(ownDomain) : null,
+        },
+        overall: {
+          top_terms: topN(corpusUnigrams, 30),
+          domains: domains.slice().sort(),
+        },
+        by_domain: byDomainSummary,
+        theme_matrix: Object.fromEntries([...themeMatrix.entries()].map(([k,v]) => [k, [...v].sort()])),
+        cta_matrix: Object.fromEntries([...ctaMatrix.entries()].map(([k,v]) => [k, [...v].sort()])),
+        suggestions: {
+          chancen: rare.length ? [{
+            title: 'Selten beworbene Themen (potenzielle Differenzierung)',
+            items: rare,
+            note: 'Selten heißt nicht automatisch hohe Nachfrage – aber oft weniger Konkurrenz im Messaging.'
+          }] : [],
+          lieber_nicht: [
+            ...(crowded.length ? [{
+              title: 'Sehr häufig beworbene Themen (stark umkämpft)',
+              items: crowded,
+              note: 'Hier brauchst du meistens klare USP (Preis/Speed/Nische), sonst gehst du im Vergleich unter.'
+            }] : []),
+            ...(brandDomains.length ? [{
+              title: 'Marken-/Brand-Begriffe in Anzeigen (Vorsicht)',
+              items: brandDomains,
+              note: 'Begriffe wie TÜV/DEKRA etc. können markenrechtlich/Policy-relevant sein – im Zweifel vermeiden oder juristisch klären.'
+            }] : []),
+          ]
+        }
+      };
+
+      return report;
+
+      function topN(map, n) {
+        return [...map.entries()].sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0,n).map(([k]) => k);
+      }
+      function mapToSortedObject(map) {
+        const entries = [...map.entries()].sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+        return Object.fromEntries(entries);
+      }
+    }
+
+    function render(report) {
+      const byDomain = report.by_domain;
+      const doms = Object.entries(byDomain).sort((a,b) => b[1].ads - a[1].ads || a[0].localeCompare(b[0]));
+
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      thead.innerHTML = '<tr><th>Domain</th><th>Ads</th><th>Top-Themen</th><th>Top-CTA</th></tr>';
+      table.appendChild(thead);
+      const tb = document.createElement('tbody');
+      for (const [dom, s] of doms) {
+        const themes = Object.keys(s.themes || {}).slice(0,4).join(', ') || '–';
+        const ctas = Object.keys(s.cta || {}).slice(0,4).join(', ') || '–';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><code>${escapeHtml(dom)}</code></td><td>${s.ads}</td><td>${escapeHtml(themes)}</td><td>${escapeHtml(ctas)}</td>`;
+        tb.appendChild(tr);
+      }
+      table.appendChild(tb);
+
+      els.summary.innerHTML = '';
+      els.summary.appendChild(table);
+
+      // Details blocks
+      const details = document.createElement('div');
+      details.innerHTML = '';
+
+      for (const [dom, s] of doms) {
+        const block = document.createElement('div');
+        block.style.marginTop = '12px';
+        block.innerHTML = `
+          <div style="font-weight:900;color:var(--text);margin:10px 0 6px">${escapeHtml(dom)}</div>
+          <div class="muted small">Themen: ${escapeHtml(Object.keys(s.themes || {}).join(', ') || '–')}</div>
+          <div class="muted small">CTA: ${escapeHtml(Object.keys(s.cta || {}).join(', ') || '–')}</div>
+          <div class="small" style="margin-top:6px"><span class="muted">Top Phrasen:</span><br>
+            <span class="muted">1-gram:</span> ${escapeHtml((s.top_unigrams || []).slice(0,10).join(', '))}<br>
+            <span class="muted">2-gram:</span> ${escapeHtml((s.top_bigrams || []).slice(0,8).join(', '))}
+          </div>
+          <hr style="border:none;border-top:1px solid var(--border);margin:12px 0 0">
+        `;
+        details.appendChild(block);
+      }
+
+      // Suggestions
+      const sug = document.createElement('div');
+      sug.style.marginTop = '14px';
+      sug.innerHTML = `<div style="font-weight:900;margin-bottom:8px">Chancen & Risiken</div>`;
+
+      const blocks = [];
+      for (const b of (report.suggestions?.chancen || [])) blocks.push({ kind: 'chance', ...b });
+      for (const b of (report.suggestions?.lieber_nicht || [])) blocks.push({ kind: 'risk', ...b });
+
+      for (const b of blocks) {
+        const div = document.createElement('div');
+        div.style.margin = '10px 0';
+        div.innerHTML = `<div style="font-weight:800">${escapeHtml(b.title)}</div>`;
+
+        if (Array.isArray(b.items) && b.items.length && typeof b.items[0] === 'object' && b.items[0].theme) {
+          const t = document.createElement('table');
+          t.innerHTML = '<thead><tr><th>Thema</th><th>Abdeckung</th><th>Domains</th></tr></thead>';
+          const tbody = document.createElement('tbody');
+          for (const it of b.items) {
+            const tr = document.createElement('tr');
+            const pct = Math.round((it.coverage || 0) * 100);
+            tr.innerHTML = `<td><code>${escapeHtml(it.theme)}</code></td><td>${pct}%</td><td class="muted">${escapeHtml((it.domains || []).slice(0,6).join(', '))}${(it.domains||[]).length>6 ? ' …' : ''}</td>`;
+            tbody.appendChild(tr);
+          }
+          t.appendChild(tbody);
+          div.appendChild(t);
+        } else if (Array.isArray(b.items)) {
+          const ul = document.createElement('ul');
+          ul.style.margin = '6px 0 0 18px';
+          for (const it of b.items) {
+            const li = document.createElement('li');
+            li.textContent = String(it);
+            ul.appendChild(li);
+          }
+          div.appendChild(ul);
+        }
+
+        if (b.note) {
+          const p = document.createElement('div');
+          p.className = 'hint';
+          p.style.marginTop = '6px';
+          p.textContent = b.note;
+          div.appendChild(p);
+        }
+        sug.appendChild(div);
+      }
+
+      els.details.innerHTML = '';
+      els.details.appendChild(sug);
+      els.details.appendChild(details);
+    }
+
+    function reportToMarkdown(report) {
+      const meta = report.meta;
+      const byDomain = report.by_domain;
+      const doms = Object.entries(byDomain).sort((a,b) => b[1].ads - a[1].ads || a[0].localeCompare(b[0]));
+
+      const lines = [];
+      lines.push('# Google Ads Wettbewerbs-Report');
+      lines.push('');
+      lines.push(`Stand: \`${meta.generated_at}\` | Domains: **${meta.domains}** | Ads: **${meta.rows}**`);
+      if (meta.own_domain) lines.push(`Eigene Domain: **${meta.own_domain}**`);
+      lines.push('');
+      lines.push('## Kurzüberblick');
+      lines.push('');
+      lines.push('Top Begriffe (gesamt):');
+      lines.push('- ' + (report.overall.top_terms || []).slice(0,20).join(', '));
+      lines.push('');
+
+      lines.push('| Domain | Ads | Top-Themen | Top-CTA |');
+      lines.push('| --- | --- | --- | --- |');
+      for (const [dom, s] of doms) {
+        const themes = Object.keys(s.themes || {}).slice(0,4).join(', ') || '–';
+        const ctas = Object.keys(s.cta || {}).slice(0,4).join(', ') || '–';
+        lines.push(`| ${dom} | ${s.ads} | ${themes} | ${ctas} |`);
+      }
+      lines.push('');
+
+      lines.push('## Was bewerben die? (pro Domain)');
+      lines.push('');
+      for (const [dom, s] of doms) {
+        lines.push(`### ${dom}`);
+        lines.push('');
+        if (s.themes && Object.keys(s.themes).length) lines.push('Themen-Tags: ' + Object.keys(s.themes).map(k => `\`${k}\``).join(', '));
+        if (s.cta && Object.keys(s.cta).length) lines.push('CTA-Hinweise: ' + Object.keys(s.cta).map(k => `\`${k}\``).join(', '));
+        lines.push('Top Phrasen:');
+        lines.push('- 1-gram: ' + (s.top_unigrams || []).slice(0,10).join(', '));
+        lines.push('- 2-gram: ' + (s.top_bigrams || []).slice(0,8).join(', '));
+        lines.push('');
+      }
+
+      lines.push('## Chancen & Risiken');
+      lines.push('');
+
+      for (const block of (report.suggestions?.chancen || [])) {
+        lines.push(`### ${block.title}`);
+        lines.push('');
+        if (Array.isArray(block.items) && block.items.length && block.items[0].theme) {
+          lines.push('| Thema | Abdeckung | Domains |');
+          lines.push('| --- | --- | --- |');
+          for (const it of block.items) {
+            const pct = Math.round((it.coverage || 0) * 100);
+            const doms2 = (it.domains || []).slice(0,6).join(', ') + (((it.domains||[]).length>6) ? ' …' : '');
+            lines.push(`| ${it.theme} | ${pct}% | ${doms2} |`);
+          }
+        }
+        if (block.note) { lines.push(''); lines.push(block.note); }
+        lines.push('');
+      }
+
+      for (const block of (report.suggestions?.lieber_nicht || [])) {
+        lines.push(`### ${block.title}`);
+        lines.push('');
+        if (Array.isArray(block.items) && block.items.length && block.items[0].theme) {
+          lines.push('| Thema | Abdeckung | Domains |');
+          lines.push('| --- | --- | --- |');
+          for (const it of block.items) {
+            const pct = Math.round((it.coverage || 0) * 100);
+            const doms2 = (it.domains || []).slice(0,6).join(', ') + (((it.domains||[]).length>6) ? ' …' : '');
+            lines.push(`| ${it.theme} | ${pct}% | ${doms2} |`);
+          }
+        } else if (Array.isArray(block.items)) {
+          for (const it of block.items) lines.push(`- ${it}`);
+        }
+        if (block.note) { lines.push(''); lines.push(block.note); }
+        lines.push('');
+      }
+
+      return lines.join('\n');
+    }
+
+    function download(filename, content, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function rowsFromParsed(parsed) {
+      const mapping = guessColumns(parsed.headers);
+      const out = [];
+      for (const r of parsed.rows) {
+        const domain = normDomain(r[mapping.domain] || '');
+        const headline = (r[mapping.headline] || '').trim();
+        const description = (r[mapping.description] || '').trim();
+        const landing_url = mapping.landing_url ? (r[mapping.landing_url] || '').trim() : '';
+        if (!domain) continue;
+        if (!headline || !description) continue;
+        out.push({
+          domain,
+          headline,
+          description,
+          landing_url: landing_url || null,
+          text: `${headline} ${description}`.trim(),
+        });
+      }
+      return out;
+    }
+
+    function rowsFromNoHeader(text) {
+      const raw = (text || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+      const lines = raw.split('\n').filter(l => l.trim().length > 0);
+      if (!lines.length) return [];
+      const delim = detectDelimiter(lines[0]);
+      const out = [];
+      for (const line of lines) {
+        const fields = parseLine(line, delim);
+        if (fields.length < 3) continue;
+        const domain = normDomain(fields[0] || '');
+        const headline = (fields[1] || '').trim();
+        const description = (fields[2] || '').trim();
+        const landing_url = (fields[3] || '').trim();
+        if (!domain) continue;
+        if (!headline || !description) continue;
+        out.push({
+          domain,
+          headline,
+          description,
+          landing_url: landing_url || null,
+          text: `${headline} ${description}`.trim(),
+        });
+      }
+      return out;
+    }
+
+    let lastReport = null;
+
+    els.pasteExampleBtn.addEventListener('click', () => {
+      els.csvText.value = [
+        'domain,headline,description,landing_url',
+        'example.com,ISO 9001 Zertifikat schnell erhalten,Online Zertifizierung inkl. Audit. Angebot anfordern!,https://example.com/iso9001',
+        'example.org,ISO 9001 Beratung für KMU,Festpreis-Paket für kleine Unternehmen. Jetzt Termin buchen!,https://example.org/kmu',
+      ].join('\n');
+      setSuccess('Beispiel eingefügt. Jetzt auf “Analysieren” klicken.');
+    });
+
+    els.analyzeBtn.addEventListener('click', async () => {
+      setError('');
+      setSuccess('');
+      els.status.textContent = '';
+      els.downloadMd.disabled = true;
+      els.downloadJson.disabled = true;
+      els.summary.innerHTML = '';
+      els.details.innerHTML = '';
+      lastReport = null;
+
+      try {
+        let text = els.csvText.value || '';
+
+        const file = els.file.files && els.file.files[0] ? els.file.files[0] : null;
+        if (file) {
+          els.status.textContent = 'Lese Datei…';
+          text = await file.text();
+        }
+
+        if (!text.trim()) {
+          throw new Error('Bitte CSV hochladen oder Text einfügen.');
+        }
+
+        const parsed = parseDelimited(text);
+
+        let adRows = [];
+        if (parsed.headers.length) {
+          try {
+            adRows = rowsFromParsed(parsed);
+          } catch (e) {
+            // Fallback: no header, assume column order
+            adRows = rowsFromNoHeader(text);
+          }
+        } else {
+          adRows = rowsFromNoHeader(text);
+        }
+
+        if (!adRows.length) {
+          throw new Error('Keine gültigen Zeilen gefunden. Prüfe: domain + headline + description müssen gefüllt sein (Header optional).');
+        }
+
+        const report = analyzeRows(adRows, els.ownDomain.value || null);
+        lastReport = report;
+        render(report);
+
+        els.downloadMd.disabled = false;
+        els.downloadJson.disabled = false;
+        setSuccess(`Analyse fertig: ${report.meta.domains} Domains, ${report.meta.rows} Ads.`);
+      } catch (e) {
+        setError(e?.message || String(e));
+      } finally {
+        els.status.textContent = '';
+      }
+    });
+
+    els.downloadMd.addEventListener('click', () => {
+      if (!lastReport) return;
+      const md = reportToMarkdown(lastReport);
+      download('ads_report.md', md, 'text/markdown;charset=utf-8');
+    });
+
+    els.downloadJson.addEventListener('click', () => {
+      if (!lastReport) return;
+      download('ads_report.json', JSON.stringify(lastReport, null, 2), 'application/json;charset=utf-8');
+    });
+  </script>
+</body>
+</html>
