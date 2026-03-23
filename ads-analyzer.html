@@ -91,10 +91,17 @@
     <div class="grid">
       <section class="card">
         <h2>1) Daten rein</h2>
-        <p class="hint">Einfachster Weg: aus Excel/Sheets kopieren und hier einfügen. Spalten: <code>domain</code>, <code>headline</code>, <code>description</code> (optional <code>landing_url</code>). Trennzeichen: Komma, Semikolon oder Tab. Ohne Header geht auch (dann muss die Reihenfolge genau so sein).</p>
+        <p class="hint">Einfachster Weg: aus Excel/Sheets kopieren und hier einfügen. Spalten: <code>domain</code>, <code>headline</code>, <code>description</code> (optional <code>landing_url</code>). Trennzeichen: Komma, Semikolon oder Tab. Ohne Header geht auch (Reihenfolge: Domain/Headline/Description). Wenn du aus dem Transparency Center nur <strong>Headline + Description</strong> kopierst, setze unten die Konkurrenz-Domain.</p>
 
         <label for="ownDomain">Eigene Domain (optional)</label>
         <input id="ownDomain" type="text" placeholder="9001-zertifikat.qmberater.info" />
+
+        <label for="competitorDomain">Konkurrenz-Domain (nur nötig, wenn dein Paste keine Domain-Spalte hat)</label>
+        <input id="competitorDomain" type="text" placeholder="visocert.de" list="competitorDomains" />
+        <datalist id="competitorDomains"></datalist>
+
+        <label for="competitorDomainList">Domain-Liste (optional, für Vorschläge)</label>
+        <textarea id="competitorDomainList" spellcheck="false" placeholder="visocert.de\ntuvsud.com\ndicis.org\n..." style="min-height:120px"></textarea>
 
         <label for="file">CSV-Datei (optional)</label>
         <input id="file" type="file" accept=".csv,text/csv" />
@@ -104,7 +111,8 @@
 
         <div class="row" style="margin-top:12px">
           <button id="analyzeBtn" class="btn btn-orange" type="button">Analysieren</button>
-          <button id="pasteExampleBtn" class="btn btn-ghost" type="button">Beispiel einfügen</button>
+          <button id="pasteExampleBtn" class="btn btn-ghost" type="button">Beispiel (mit Domain)</button>
+          <button id="pasteExampleNoDomainBtn" class="btn btn-ghost" type="button">Beispiel (ohne Domain)</button>
           <span id="status" class="small muted"></span>
         </div>
 
@@ -171,10 +179,14 @@
 
     const els = {
       ownDomain: document.getElementById('ownDomain'),
+      competitorDomain: document.getElementById('competitorDomain'),
+      competitorDomains: document.getElementById('competitorDomains'),
+      competitorDomainList: document.getElementById('competitorDomainList'),
       file: document.getElementById('file'),
       csvText: document.getElementById('csvText'),
       analyzeBtn: document.getElementById('analyzeBtn'),
       pasteExampleBtn: document.getElementById('pasteExampleBtn'),
+      pasteExampleNoDomainBtn: document.getElementById('pasteExampleNoDomainBtn'),
       error: document.getElementById('error'),
       success: document.getElementById('success'),
       status: document.getElementById('status'),
@@ -183,6 +195,37 @@
       downloadMd: document.getElementById('downloadMd'),
       downloadJson: document.getElementById('downloadJson'),
     };
+
+    function parseDomainList(text) {
+      return (text || '')
+        .split(/\r?\n/)
+        .map(s => normDomain(s))
+        .filter(Boolean);
+    }
+
+    function refreshDomainDatalist() {
+      const domains = parseDomainList(els.competitorDomainList.value);
+      els.competitorDomains.innerHTML = '';
+      for (const d of Array.from(new Set(domains)).sort()) {
+        const opt = document.createElement('option');
+        opt.value = d;
+        els.competitorDomains.appendChild(opt);
+      }
+    }
+
+    // Seed with a sensible default list (can be overwritten by user)
+    els.competitorDomainList.value = [
+      'visocert.de',
+      'tuvsud.com',
+      'dicis.org',
+      'imsm.com',
+      'ifdq.de',
+      'dinmedia.de',
+      'dqsglobal.com',
+      'dekra-certification.de',
+    ].join('\n');
+    refreshDomainDatalist();
+    els.competitorDomainList.addEventListener('input', refreshDomainDatalist);
 
     function setError(msg) {
       els.error.style.display = msg ? 'block' : 'none';
@@ -644,11 +687,27 @@
       const out = [];
       for (const line of lines) {
         const fields = parseLine(line, delim);
-        if (fields.length < 3) continue;
-        const domain = normDomain(fields[0] || '');
-        const headline = (fields[1] || '').trim();
-        const description = (fields[2] || '').trim();
-        const landing_url = (fields[3] || '').trim();
+        if (fields.length < 2) continue;
+
+        // Mode A: domain + headline + description (+ landing)
+        // Mode B: headline + description (+ landing) -> domain comes from competitorDomain input
+        let domain = '';
+        let headline = '';
+        let description = '';
+        let landing_url = '';
+
+        if (fields.length >= 3) {
+          domain = normDomain(fields[0] || '');
+          headline = (fields[1] || '').trim();
+          description = (fields[2] || '').trim();
+          landing_url = (fields[3] || '').trim();
+        } else {
+          domain = normDomain(els.competitorDomain.value || '');
+          headline = (fields[0] || '').trim();
+          description = (fields[1] || '').trim();
+          landing_url = (fields[2] || '').trim();
+        }
+
         if (!domain) continue;
         if (!headline || !description) continue;
         out.push({
@@ -671,6 +730,15 @@
         'example.org,ISO 9001 Beratung für KMU,Festpreis-Paket für kleine Unternehmen. Jetzt Termin buchen!,https://example.org/kmu',
       ].join('\n');
       setSuccess('Beispiel eingefügt. Jetzt auf “Analysieren” klicken.');
+    });
+
+    els.pasteExampleNoDomainBtn.addEventListener('click', () => {
+      els.competitorDomain.value = 'visocert.de';
+      els.csvText.value = [
+        'ISO 9001 Zertifikat schnell erhalten\tOnline Zertifizierung inkl. Audit. Angebot anfordern!',
+        'ISO 9001 Beratung für KMU\tFestpreis-Paket für kleine Unternehmen. Jetzt Termin buchen!',
+      ].join('\n');
+      setSuccess('Beispiel (ohne Domain) eingefügt. Konkurrenz-Domain ist gesetzt. Jetzt “Analysieren”.');
     });
 
     els.analyzeBtn.addEventListener('click', async () => {
@@ -703,7 +771,6 @@
           try {
             adRows = rowsFromParsed(parsed);
           } catch (e) {
-            // Fallback: no header, assume column order
             adRows = rowsFromNoHeader(text);
           }
         } else {
@@ -711,7 +778,8 @@
         }
 
         if (!adRows.length) {
-          throw new Error('Keine gültigen Zeilen gefunden. Prüfe: domain + headline + description müssen gefüllt sein (Header optional).');
+          const domHint = (els.competitorDomain.value || '').trim() ? '' : ' (oder setze “Konkurrenz-Domain”, wenn du ohne Domain-Spalte paste)';
+          throw new Error('Keine gültigen Zeilen gefunden. Prüfe: headline + description müssen gefüllt sein. Domain entweder als Spalte oder über “Konkurrenz-Domain”.' + domHint);
         }
 
         const report = analyzeRows(adRows, els.ownDomain.value || null);
