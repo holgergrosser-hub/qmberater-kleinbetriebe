@@ -1,5 +1,14 @@
 node_modules/
 dist/
+lighthouse-report.*
+.lighthouse-profile/
+
+# Python / tools
+**/__pycache__/
+*.pyc
+tools/ads_competitor_analyzer/ads.csv
+tools/ads_competitor_analyzer/ads_report.md
+tools/ads_competitor_analyzer/ads_report.json
 .DS_Store
 *.log
 
